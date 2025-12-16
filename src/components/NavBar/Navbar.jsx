@@ -18,7 +18,7 @@ const Navbar = () => {
   const links = <>
     <li><NavLink to="/clubs">Clubs</NavLink></li>
     <li><NavLink to="/events">Events</NavLink></li>
-    <li><NavLink to="/clubs/create">Create Club</NavLink></li>
+    
 
 
   </>
@@ -36,7 +36,7 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <span className="btn btn-ghost text-xl">
+        <span className="btn btn-ghost text-[#f05537] text-xl">
           ClubSphere
         </span>
       </div>
@@ -66,7 +66,7 @@ const Navbar = () => {
                 <li className='ml-2 text-lg font-bold'>
                   {user.displayName}
                 </li>
-                <Link to={'/dashbord'} className='ml-2 text-sm font-bold'>
+                <Link to={'/dashboard'} className='ml-2 text-sm font-bold'>
                   DashBord
                 </Link>
                 <li>
@@ -82,7 +82,7 @@ const Navbar = () => {
           </div>
         ) : (
           <div className="flex gap-3 ">
-            <Link to="/auth/login" className="btn text-white mt-4 rounded-full bg-linear-to-r from-pink-500 to-red-600">
+            <Link to="/login" className="btn bg-[#f05537] text-white">
               Log in
             </Link>
 

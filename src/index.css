@@ -3,7 +3,10 @@
 
 @plugin "daisyui" {
     themes: light --default;
-    --color-primary: #CAEB66;
+    --color-primary: #f05537;
     --color-secondary: #03373D;
 }
 
+/* body{
+    background: rgb(200, 126, 29);
+} */

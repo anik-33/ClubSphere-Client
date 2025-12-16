@@ -103,7 +103,7 @@ const CreateClub = () => {
                 <input type="email" {...register('managerEmail', { required: true })} className="input input-bordered w-full" />
                 {errors.managerEmail && <span className="text-red-500 text-sm">Manager email is required</span>}
             </div>
-            <button type="submit" className="btn btn-primary w-full">Create Club</button>
+            <button type="submit" className="btn bg-[#f05537] text-white w-full">Create Club</button>
         </form>
     );
 };

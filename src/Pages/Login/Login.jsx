@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import useAuth from "@/Hooks/useAuth";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 
 export default function LoginPage() {
   const { signInUser } = useAuth();
@@ -10,7 +10,8 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const navigate = useNavigate();
+  const location = useLocation();
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -20,7 +21,9 @@ export default function LoginPage() {
     try {
       setLoading(true);
       const result = await signInUser(email, password);
+
       console.log("Logged in user:", result.user);
+      navigate(location.state?.from?.pathname || "/", { replace: true });
     } catch (err) {
       setError("Invalid email or password",err);
     } finally {
