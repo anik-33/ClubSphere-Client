@@ -1,4 +1,5 @@
 
+import useAuth from '@/Hooks/useAuth';
 import useAxiosSecure from '@/Hooks/UseAxiosSecure';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -9,6 +10,7 @@ import Swal from 'sweetalert2';
 const CreateClub = () => {
     const axiosSecure = useAxiosSecure();
    const navigate = useNavigate();
+   const {user}= useAuth();
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
@@ -42,12 +44,12 @@ const CreateClub = () => {
                         if (res.data.insertedId) {
                             console.log('Club created successfully');
                             Swal.fire({
-                                title: "Deleted!",
+                                title: "Created!",
                                 text: "Club Created Succesfully!.",
                                 icon: "success"
 
                             });
-                            navigate('/clubs');
+                            navigate('/dashboard');
                         }
                         
                     })
@@ -100,7 +102,7 @@ const CreateClub = () => {
             </div>
             <div className="mb-4">
                 <label className="block mb-1 font-medium">Manager Email</label>
-                <input type="email" {...register('managerEmail', { required: true })} className="input input-bordered w-full" />
+                <input type="email" defaultValue={user.email} {...register('managerEmail', { required: true })} className="input input-bordered w-full" />
                 {errors.managerEmail && <span className="text-red-500 text-sm">Manager email is required</span>}
             </div>
             <button type="submit" className="btn bg-[#f05537] text-white w-full">Create Club</button>
