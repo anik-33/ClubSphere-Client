@@ -1,19 +1,21 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router';
+import { IoIosCreate } from "react-icons/io";
+import { FaUserSecret } from "react-icons/fa";
 
 const DashBord = () => {
     return (
         <div>
-            <div className="drawer lg:drawer-open">
+            <div className="drawer lg:drawer-open ">
                 <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
                     {/* Navbar */}
-                    <nav className="navbar w-full bg-base-300">
+                    <nav className="navbar w-full bg-base-300 bg-gradient-to-br from-blue-50 to-blue-200">
                         <label htmlFor="my-drawer-4" aria-label="open sidebar" className="btn btn-square btn-ghost">
                             {/* Sidebar toggle icon */}
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4"><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path><path d="M9 4v16"></path><path d="M14 10l2 2l-2 2"></path></svg>
                         </label>
-                        <div className="px-4">Navbar Title</div>
+                        <div className="px-4 text-2xl text-blue-800">ClubSphere Dashboard</div>
                     </nav>
                     {/* Page content here */}
                     <Outlet></Outlet>
@@ -25,28 +27,40 @@ const DashBord = () => {
                         {/* Sidebar content here */}
                         <ul className="menu w-full grow">
                             {/* List item */}
-                            <li>
-                                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
+                           <li>
+                              <NavLink to='/'>
+                                  <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
                                     {/* Home icon */}
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
                                     <span className="is-drawer-close:hidden">Homepage</span>
                                 </button>
+                              </NavLink>
                             </li>
+
 
                             {/* List item */}
                             <li>
-                                
+                                <NavLink to="users/management" >
+                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="User Manage">
+                                        {/*users icon */}
 
-                                <NavLink to="clubs/create" >
-                                  <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Create Club">
-                                    {/* Club Creeate icon */}
-                                    
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f22121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-icon lucide-book"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg>
-                                    <span className="is-drawer-close:hidden">Create Club</span>
-                                </button>
+                                        <FaUserSecret />
+                                        <span className="is-drawer-close:hidden">Users Manage</span>
+                                    </button>
                                 </NavLink>
-                               
                             </li>
+                            {/* List item */}
+                            <li>
+                                <NavLink to="clubs/create" >
+                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Create Club">
+                                        {/* Club Creeate icon */}
+
+                                        <IoIosCreate />
+                                        <span className="is-drawer-close:hidden">Create Club</span>
+                                    </button>
+                                </NavLink>
+                            </li>
+
                             {/* List item */}
                             <li>
                                 <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Settings">
