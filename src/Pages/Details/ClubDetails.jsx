@@ -3,13 +3,17 @@ import useAuth from '@/Hooks/useAuth';
 import useAxiosSecure from '@/Hooks/UseAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { useParams } from 'react-router';
+import { useLocation, useNavigate, useParams } from 'react-router';
 import { FaMapMarkerAlt, FaUsers, FaTag } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 const ClubDetails = () => {
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
-  const { loading } = useAuth();
+  const {user, loading } = useAuth();
+  const navigate = useNavigate();
+const Location = useLocation();
+
 
   const { data: club = {}, isLoading } = useQuery({
     queryKey: ['club', id],
@@ -29,6 +33,58 @@ const ClubDetails = () => {
     membershipFee,
     status,
   } = club;
+
+
+const handleJoinClub = (id) => {
+  if (!user) {
+    navigate('/login', {
+      state: { from: Location }
+    });
+    return;
+  }
+
+const userInfo ={
+  useremail: user.email,
+  clubId: id,
+  status:'pending',
+  paymentId:'null',
+  joinedAt:new Date(),
+
+
+}
+  
+          Swal.fire({
+              title: "Are you sure?",
+              text: "You won't be able to revert this!",
+  
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Yes, "
+          }).then((result) => {
+              if (result.isConfirmed) {
+  
+                  axiosSecure.post('/booking/clubs', userInfo)
+                      .then(res => {
+                          if (res.data.insertedId) {
+                              console.log('Join as club member successfully');
+                              Swal.fire({
+                                  title: "Joined!",
+                                  text: "Joined Succesfully!.",
+                                  icon: "success"
+  
+                              });
+                              // navigate('/dashboard/myBookings');
+                          }
+  
+                      })
+  
+  
+              }
+          });
+  
+};
+
 
   if (loading || isLoading) {
     return <Loading />;
@@ -85,7 +141,7 @@ const ClubDetails = () => {
             <div>
               <span
                 className={`px-3 py-1 rounded-full text-sm font-medium ${
-                  status === 'active'
+                  status === 'approved'
                     ? 'bg-green-100 text-green-700'
                     : 'bg-red-100 text-red-700'
                 }`}
@@ -106,6 +162,7 @@ const ClubDetails = () => {
           </p>
 
           <button
+          onClick={()=>handleJoinClub(club._id)}
             className="w-full py-3 rounded-lg bg-blue-700 text-white font-medium hover:bg-primary/90 transition"
           >
             Join Now

@@ -15,6 +15,10 @@ import AllClub from "@/Pages/dashboard/manageClub&event/MyClub";
 import CreateEvent from "@/Pages/dashboard/CreateEvent/CreateEvent";
 import MyClub from "@/Pages/dashboard/manageClub&event/MyClub";
 import ApproveClub from "@/Pages/dashboard/approveClub/ApproveClub";
+import Events from "@/Pages/Events/Events";
+import EventDetails from "@/Pages/Events/EventDetails";
+import UserClub from "@/Pages/dashboard/userClublist/userClub";
+import UserEvent from "@/Pages/dashboard/userEvent/UserEvent";
 
 
 
@@ -23,66 +27,82 @@ import ApproveClub from "@/Pages/dashboard/approveClub/ApproveClub";
 export const router = createBrowserRouter([
   {
     path: "/",
-    Component:RootLayout,
-     children: [
+    Component: RootLayout,
+    children: [
       {
         index: true,
         Component: Home
       },
       {
         path: '/clubs',
-        Component:Club
+        Component: Club
       },
       {
-        path:'/clubs/:id',
-        element:<ClubDetails></ClubDetails>
+        path: '/clubs/:id',
+        element: <ClubDetails></ClubDetails>
+      },
+      {
+        path: '/events',
+        Component: Events
+      },
+      {
+        path: '/events/details/:id',
+        Component: EventDetails
       }
-      
+
     ]
 
   },
   {
-    path:'dashboard',
-    Component:DashBord,
-    children:[
+    path: 'dashboard',
+    Component: DashBord,
+    children: [
       {
-        index:true,
-        Component:DashboardHome
+        index: true,
+        Component: DashboardHome
       },
-     
       {
-        path:'clubs/manage',
-        Component:MyClub
+        path: 'user/myclub',
+        Component: UserClub
+      },
+      {
+        path: 'user/myevent',
+        Component: UserEvent
+      },
+
+      {
+        path: 'clubs/manage',
+        Component: MyClub
         // manager route
       },
-        {
-        path:'clubs/manage/create/newclub',
-        Component:CreateClub
+      {
+        path: 'clubs/manage/create/newclub',
+        Component: CreateClub
         // element:<ManagerRoute><CreateClub></CreateClub></ManagerRoute>
       },
       {
-        path:'clubs/manage/create/newevent/:id',
-        Component:CreateEvent
+        path: 'clubs/manage/create/newevent/:id',
+        Component: CreateEvent
       },
-     
+
       {
-        path:'users/management',
-        Component:UsersManage
+        path: 'users/management',
+        Component: UsersManage
         // element:<AdminRoute><UsersManage></UsersManage></AdminRoute>
       },
       {
-        path:'club/management',
-        Component:ApproveClub
+        path: 'club/management',
+        Component: ApproveClub
       },
     ]
   },
   // login route
   {
-    path:'/login',
-    Component:Login
+    path: '/login',
+    Component: Login
   },
   {
-    path:'/registration',
-    Component:Register
+    path: '/registration',
+    Component: Register
   }
 ]);

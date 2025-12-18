@@ -1,8 +1,10 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router';
 import { IoIosCreate } from "react-icons/io";
-import { FaUserSecret } from "react-icons/fa";
-import { MdCreateNewFolder } from "react-icons/md";
+import { FaUsers } from "react-icons/fa";
+import { BiFolderPlus } from "react-icons/bi";
+import { MdCreateNewFolder, MdEventAvailable } from "react-icons/md";
+import { LuClub } from "react-icons/lu";
 
 const DashBord = () => {
     return (
@@ -28,14 +30,23 @@ const DashBord = () => {
                         {/* Sidebar content here */}
                         <ul className="menu w-full grow">
                             {/* List item */}
-                           <li>
-                              <NavLink to='/'>
-                                  <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
-                                    {/* Home icon */}
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
-                                    <span className="is-drawer-close:hidden">Homepage</span>
-                                </button>
-                              </NavLink>
+                            <li>
+                                <NavLink to='/'>
+                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
+                                        {/* Home icon */}
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+                                        <span className="is-drawer-close:hidden">Homepage</span>
+                                    </button>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to='/dashboard'>
+                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
+                                        {/* Home icon */}
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+                                        <span className="is-drawer-close:hidden">Dashboard Home</span>
+                                    </button>
+                                </NavLink>
                             </li>
 
 
@@ -44,9 +55,8 @@ const DashBord = () => {
                                 <NavLink to="users/management" >
                                     <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="User Manage">
                                         {/*users icon */}
-
-                                        <FaUserSecret />
-                                        <span className="is-drawer-close:hidden">Users Manage</span>
+                                        <FaUsers />
+                                        <span className="is-drawer-close:hidden">Manage Users</span>
                                     </button>
                                 </NavLink>
                             </li>
@@ -54,8 +64,7 @@ const DashBord = () => {
                                 <NavLink to="club/management" >
                                     <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="User Manage">
                                         {/*users icon */}
-
-                                        <FaUserSecret />
+                                        <BiFolderPlus />
                                         <span className="is-drawer-close:hidden">Club Management</span>
                                     </button>
                                 </NavLink>
@@ -65,7 +74,6 @@ const DashBord = () => {
                                 <NavLink to="clubs/manage/create/newclub" >
                                     <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Create Club">
                                         {/* Club Creeate icon */}
-
                                         <IoIosCreate />
                                         <span className="is-drawer-close:hidden">Create Club</span>
                                     </button>
@@ -76,12 +84,32 @@ const DashBord = () => {
                                 <NavLink to="clubs/manage" >
                                     <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manage Clubs">
                                         {/* Club manage icon */}
-
                                         <MdCreateNewFolder />
-                                        <span className="is-drawer-close:hidden">My Clubs</span>
+                                        <span className="is-drawer-close:hidden">Manager Clubs</span>
                                     </button>
                                 </NavLink>
                             </li>
+
+                            {/* List item for user role*/}
+                            <NavLink to='user/myclub'>
+                                <li>
+                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Clubs">
+                                        {/* Users icon */}
+                                        <LuClub />
+                                        <span className="is-drawer-close:hidden">My Clubs</span>
+                                    </button>
+                                </li>
+                            </NavLink>
+                            <NavLink to='user/myevent'>
+                                <li>
+                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Events">
+                                        {/* Users icon */}
+                                        <MdEventAvailable />
+                                        <span className="is-drawer-close:hidden">My Events</span>
+                                    </button>
+                                </li>
+                            </NavLink>
+
 
                             {/* List item */}
                             <li>
