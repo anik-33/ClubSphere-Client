@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, Outlet } from 'react-router';
 import { IoIosCreate } from "react-icons/io";
 import { FaUserSecret } from "react-icons/fa";
+import { MdCreateNewFolder } from "react-icons/md";
 
 const DashBord = () => {
     return (
@@ -38,7 +39,7 @@ const DashBord = () => {
                             </li>
 
 
-                            {/* List item */}
+                            {/* List item for admin role */}
                             <li>
                                 <NavLink to="users/management" >
                                     <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="User Manage">
@@ -49,14 +50,35 @@ const DashBord = () => {
                                     </button>
                                 </NavLink>
                             </li>
-                            {/* List item */}
                             <li>
-                                <NavLink to="clubs/create" >
+                                <NavLink to="club/management" >
+                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="User Manage">
+                                        {/*users icon */}
+
+                                        <FaUserSecret />
+                                        <span className="is-drawer-close:hidden">Club Management</span>
+                                    </button>
+                                </NavLink>
+                            </li>
+                            {/* List item for manager role */}
+                            <li>
+                                <NavLink to="clubs/manage/create/newclub" >
                                     <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Create Club">
                                         {/* Club Creeate icon */}
 
                                         <IoIosCreate />
                                         <span className="is-drawer-close:hidden">Create Club</span>
+                                    </button>
+                                </NavLink>
+                            </li>
+                            {/* List item for manager role */}
+                            <li>
+                                <NavLink to="clubs/manage" >
+                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manage Clubs">
+                                        {/* Club manage icon */}
+
+                                        <MdCreateNewFolder />
+                                        <span className="is-drawer-close:hidden">My Clubs</span>
                                     </button>
                                 </NavLink>
                             </li>

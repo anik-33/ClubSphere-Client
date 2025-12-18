@@ -16,7 +16,7 @@ const Partners = () => {
     ];
 
     return (
-        <section className="partners-section max-w-full mx-auto my-12 p-6 bg-base-100 rounded shadow text-center">
+        <section className="bg-[#0B1120] partners-section max-w-full mx-auto my-12 p-6 bg-base-100 rounded shadow text-center">
             <h2 className="text-3xl font-bold mb-4 text-primary">Our Sponsors</h2>
             <div className="overflow-hidden whitespace-nowrap border-y-2 border-primary py-4 bg-base-200 relative">
                 <div

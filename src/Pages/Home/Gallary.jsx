@@ -12,7 +12,7 @@ const Gallary = () => {
     ];
 
     return (
-        <section className="gallery-section max-w-full mx-auto my-12 p-6 bg-base-100 rounded shadow">
+        <section className=" gallery-section max-w-full mx-auto my-12 p-6 bg-base-100 rounded shadow">
             <h2 className="text-3xl font-bold mb-8 text-center text-primary">Event & Club Gallery</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 {images.map((img, idx) => (

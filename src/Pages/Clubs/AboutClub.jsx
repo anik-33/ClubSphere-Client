@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 const AboutClub = () => {
     return (
         <motion.section
-            className="about-club-section max-w-3xl mx-auto my-10 p-6 bg-base-100 rounded shadow text-center"
+            className="about-club-section mt-20 max-w-full mx-auto my-10 p-6 bg-base-100 rounded shadow text-center"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}

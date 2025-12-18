@@ -15,7 +15,7 @@ const ClubCard = ({club}) => {
             <div className="card-body">
                 <h2 className="card-title">
                     {clubName}
-                    <div className="badge badge-secondary">NEW</div>
+                    {/* <div className="badge ">NEW</div> */}
                 </h2>
                 <h2>{location}</h2>
                 <div className="card-actions justify-between items-center">
@@ -23,7 +23,7 @@ const ClubCard = ({club}) => {
                     <div className="badge badge-outline">{category}</div>
                 </div>
             </div>
-            <Link to={`/clubs/${_id}`} className='btn bg-[#f05537] text-white'>Details</Link>
+            <Link to={`/clubs/${_id}`} className='btn bg-blue-800 text-white'>Details</Link>
             
         </div>
     );

@@ -3,10 +3,15 @@ import useAxiosSecure from '@/Hooks/UseAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import AboutClub from './AboutClub';
+import useAuth from '@/Hooks/useAuth';
+import Loading from '@/components/loading/Loading';
 
 const Club = () => {
 
     const axiosSecure= useAxiosSecure();
+    const {loading}= useAuth();
+
+    
 
     const {data: clubs = []} = useQuery({
         queryKey:['clubs'],
@@ -16,10 +21,12 @@ const Club = () => {
         }
     }) 
 
-
+if (loading){
+    return <Loading></Loading>
+}
 
     return (
-        <div>
+        <div className=''>
             <AboutClub></AboutClub>
 
             <h2 className="text-3xl font-bold mb-6 text-center">Total Clubs:{clubs.length}</h2>
