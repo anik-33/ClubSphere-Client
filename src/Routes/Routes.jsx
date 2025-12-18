@@ -19,6 +19,7 @@ import Events from "@/Pages/Events/Events";
 import EventDetails from "@/Pages/Events/EventDetails";
 import UserClub from "@/Pages/dashboard/userClublist/userClub";
 import UserEvent from "@/Pages/dashboard/userEvent/UserEvent";
+import LoginLayout from "@/layout/LoginLayout";
 
 
 
@@ -98,11 +99,18 @@ export const router = createBrowserRouter([
   },
   // login route
   {
-    path: '/login',
-    Component: Login
-  },
-  {
-    path: '/registration',
-    Component: Register
+    path: 'login',
+    Component: LoginLayout,
+    children: [
+      {
+        index:true,
+        Component: Login
+      },
+      {
+        path: 'registration',
+        Component: Register
+      }
+    ]
   }
+
 ]);

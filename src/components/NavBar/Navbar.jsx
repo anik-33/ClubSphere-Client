@@ -1,5 +1,6 @@
 import useAuth from '@/Hooks/useAuth';
 import React, { useEffect, useState } from 'react';
+import { MdLogin } from 'react-icons/md';
 import { Link, NavLink } from 'react-router';
 
 const Navbar = () => {
@@ -45,7 +46,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="fixed  top-0 left-0 w-full z-50">
+    <div className="max-w-11/12 mx-auto navbar fixed top-0  w-full bg-transparent  z-50">
       <div
         className={`navbar transition-all duration-300 ${scrolled
           ? 'bg-white/90 backdrop-blur shadow'
@@ -81,7 +82,7 @@ const Navbar = () => {
 
           <Link
             to="/"
-            className="text-2xl font-bold text-[#513fc5]"
+            className="text-2xl font-bold text-blue-600"
           >
             ClubSphere
           </Link>
@@ -124,8 +125,9 @@ const Navbar = () => {
           ) : (
             <Link
               to="/login"
-              className="btn bg-[#3244bd] text-white border-none"
+              className="btn bg-blue-600 text-white border-none"
             >
+              <MdLogin />
               Log in
             </Link>
           )}

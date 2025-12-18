@@ -37,6 +37,7 @@ const UserClub = () => {
                         <tr>
                             <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">#</th>
                             <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Club ID</th>
+                            <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Email</th>
                             <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">JoinedAt</th>
                             <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Status</th>
 
@@ -55,6 +56,11 @@ const UserClub = () => {
 
                                         </div>
                                     </div>
+                                </td>
+                                <td className='px-4 py-3'>
+                             <span className={`px-2 py-1 rounded text-xs font-semibold bg-green-100 text-green-700`}>
+                                        {club.useremail}
+                                    </span>
                                 </td>
                                 <td className="px-4 py-3 text-gray-700">{club.joinedAt}</td>
                                 <td className="px-4 py-3">

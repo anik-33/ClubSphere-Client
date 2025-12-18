@@ -62,10 +62,10 @@ const DashBord = () => {
                             </li>
                             <li>
                                 <NavLink to="club/management" >
-                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="User Manage">
+                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Approve Clubs">
                                         {/*users icon */}
                                         <BiFolderPlus />
-                                        <span className="is-drawer-close:hidden">Club Management</span>
+                                        <span className="is-drawer-close:hidden">Approve Clubs</span>
                                     </button>
                                 </NavLink>
                             </li>

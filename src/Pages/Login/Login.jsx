@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import useAuth from "@/Hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router";
+import SocialLogin from "./SocialLogin";
 
 export default function LoginPage() {
   const { signInUser } = useAuth();
@@ -25,19 +26,20 @@ export default function LoginPage() {
       console.log("Logged in user:", result.user);
       navigate(location.state?.from?.pathname || "/", { replace: true });
     } catch (err) {
-      setError("Invalid email or password",err);
+      setError("Invalid email or password", err);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-600 to-purple-600 p-4">
-      <div className="bg-white dark:bg-gray-800 shadow-2xl rounded-3xl max-w-md w-full p-8">
-        <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-gray-100 mb-6">
+    <div className="max-w-md w-full bg-transparent text-white
+ min-h-screen flex items-center justify-center  p-4">
+      <div className=" dark:bg-gray-800 shadow-2xl rounded-3xl max-w-md w-full p-8">
+        <h2 className="text-3xl font-bold text-center mb-6">
           Welcome Back
         </h2>
-        <p className="text-center text-gray-500 dark:text-gray-400 mb-6">
+        <p className="text-center mb-6">
           Please login to your account
         </p>
 
@@ -74,15 +76,16 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 rounded-xl transition duration-300"
+            className="w-full bg-indigo-900 hover:bg-indigo-600 text-white font-semibold py-3 rounded-xl transition duration-300"
           >
             {loading ? "Logging in..." : "Login"}
           </button>
+          <SocialLogin></SocialLogin>
         </form>
 
-        <p className="text-center text-gray-500 dark:text-gray-400 mt-6">
+        <p className="text-center text-xl mt-6">
           Don’t have an account?{" "}
-        <Link to='/registration'><span className="text-indigo-500 cursor-pointer">Sign up</span></Link>
+          <Link to='registration'><span className="text-lime-500 cursor-pointer">Sign up</span></Link>
         </p>
       </div>
     </div>

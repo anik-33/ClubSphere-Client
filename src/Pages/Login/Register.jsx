@@ -40,7 +40,7 @@ const Register = () => {
                             email: data.email,
                             displayName: data.name,
                             photoURL: photoURL,
-                            
+
                         }
                         axiosSecure.post('/users', userInfo)
                             .then(res => {
@@ -73,59 +73,112 @@ const Register = () => {
     }
 
     return (
-        <div className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 shadow-2xl mt-7">
-            <h3 className="text-3xl text-center">Welcome To ClubSphere</h3>
-            <p className='text-center'>Please Register</p>
-            <form className="card-body" onSubmit={handleSubmit(handleRegistration)}>
-                <fieldset className="fieldset">
-                    {/* name field */}
-                    <label className="label">Name</label>
-                    <input type="text"
+        <div className="w-full bg-transparent mx-auto mt-10 p-6 rounded-2xl  shadow-2xl">
+
+            {/* Header */}
+            <div className="text-center mb-6">
+                <h2 className="text-3xl font-bold text-white mb-1">
+                    Welcome to ClubSphere
+                </h2>
+                <p className="text-whitte text-sm">
+                    Please register to continue
+                </p>
+            </div>
+
+            {/* Form */}
+            <form
+                onSubmit={handleSubmit(handleRegistration)}
+                className="space-y-4"
+            >
+                {/* Name */}
+                <div className="flex flex-col">
+                    <label className="text-sm font-medium mb-1">Name</label>
+                    <input
+                        type="text"
+                        placeholder="Your Name"
                         {...register('name', { required: true })}
-                        className="input"
-                        placeholder="Your Name" />
-                    {errors.name?.type === 'required' && <p className='text-red-500'>Name is required.</p>}
+                        className="input input-bordered w-full bg-transparent"
+                    />
+                    {errors.name && (
+                        <p className="text-xs text-red-500 mt-1">Name is required</p>
+                    )}
+                </div>
 
-                    {/* photo image field */}
-                    <label className="label">Photo</label>
+                {/* Photo */}
+                <div className="flex flex-col">
+                    <label className="text-sm font-medium mb-1">Photo</label>
+                    <input
+                        type="file"
+                        {...register('photo', { required: true })}
+                        className="file-input file-input-bordered w-full bg-transparent"
+                    />
+                    {errors.photo && (
+                        <p className="text-xs text-red-500 mt-1">Photo is required</p>
+                    )}
+                </div>
 
-                    <input type="file" {...register('photo', { required: true })} className="file-input" placeholder="Your Photo" />
+                {/* Email */}
+                <div className="flex flex-col">
+                    <label className="text-sm font-medium mb-1 ">Email</label>
+                    <input
+                        type="email"
+                        placeholder="Email Address"
+                        {...register('email', { required: true })}
+                        className="input input-bordered w-full bg-transparent"
+                    />
+                    {errors.email && (
+                        <p className="text-xs text-red-500 mt-1">Email is required</p>
+                    )}
+                </div>
 
-                    {errors.name?.type === 'required' && <p className='text-red-500'>Photo is required.</p>}
-
-                    {/* email field */}
-                    <label className="label">Email</label>
-                    <input type="email" {...register('email', { required: true })} className="input" placeholder="Email" />
-                    {errors.email?.type === 'required' && <p className='text-red-500'>Email is required.</p>}
-
-                    {/* password */}
-                    <label className="label">Password</label>
-                    <input type="password" {...register('password', {
-                        required: true,
-                        minLength: 6,
-                        pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).+$/
-                    })} className="input" placeholder="Password" />
-                    {
-                        errors.password?.type === 'required' && <p className='text-red-500'>Password is required.</p>
-                    }
-                    {
-                        errors.password?.type === 'minLength' && <p className='text-red-500'>
+                {/* Password */}
+                <div className="flex flex-col">
+                    <label className="text-sm font-medium mb-1">Password</label>
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        {...register('password', {
+                            required: true,
+                            minLength: 6,
+                            pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).+$/
+                        })}
+                        className="input input-bordered w-full bg-transparent"
+                    />
+                    {errors.password?.type === 'required' && (
+                        <p className="text-xs text-red-500 mt-1">Password is required</p>
+                    )}
+                    {errors.password?.type === 'minLength' && (
+                        <p className="text-xs text-red-500 mt-1">
                             Password must be 6 characters or longer
                         </p>
-                    }
-                    {
-                        errors.password?.type === 'pattern' && <p className='text-red-500'>Password must have at least one uppercase, at least one lowercase, at least one number, and at least one special characters</p>
-                    }
+                    )}
+                    {errors.password?.type === 'pattern' && (
+                        <p className="text-xs text-red-500 mt-1">
+                            Password must have uppercase, lowercase, number & special character
+                        </p>
+                    )}
+                </div>
 
-                    <div><a className="link link-hover">Forgot password?</a></div>
-                    <button className="btn btn-neutral mt-4">Register</button>
-                </fieldset>
-                <p>Already have an account <Link
-                    state={location.state}
-                    className='text-blue-400 underline'
-                    to="/login">Login</Link></p>
+                {/* Submit Button */}
+                <button className="btn btn-neutral w-full mt-3">Register</button>
             </form>
-            <SocialLogin></SocialLogin>
+
+            {/* Footer Links */}
+            <p className="text-sm text-center mt-4">
+                Already have an account?{' '}
+                <Link
+                    to="/login"
+                    state={location.state}
+                    className="text-indigo-600 font-medium hover:underline"
+                >
+                    Login
+                </Link>
+            </p>
+
+            {/* Social Login */}
+            <div className="mt-5">
+                <SocialLogin />
+            </div>
         </div>
     );
 };
