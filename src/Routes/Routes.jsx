@@ -22,6 +22,7 @@ import UserEvent from "@/Pages/dashboard/userEvent/UserEvent";
 import LoginLayout from "@/layout/LoginLayout";
 import ApproveClubMember from "@/Pages/dashboard/approveClubMember/ApproveClubMember";
 import ApproveRegisteredEvents from "@/Pages/dashboard/approveRegisteredEvents/ApproveRegisteredEvents";
+import MyProfile from "@/Pages/dashboard/MyProfile/MyProfile";
 
 
 
@@ -104,6 +105,10 @@ export const router = createBrowserRouter([
       {
         path:'registered-events/approve',
         Component:ApproveRegisteredEvents
+      },
+      {
+        path:'my-profile',
+        Component:MyProfile
       }
     ]
   },

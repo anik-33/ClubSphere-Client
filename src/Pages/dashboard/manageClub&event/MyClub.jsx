@@ -27,11 +27,11 @@ const MyClub = () => {
 
     return (
         <div>
-            <div className='flex justify-between items-center mb-4 p-3'>
+            <div className='flex flex-col gap-3 mb-4 p-3'>
                 <h1 className='text-gray-900 text-2xl'>Total Club Incharge:{clubs.length}</h1>
                 <div>
                     <Link to='create/newclub'>
-                        <button className='btn bg-blue-300 text-white'>Create Club</button>
+                        <button className='btn bg-blue-500 text-white'>Create New Club</button>
                     </Link>
                 </div>
             </div>
