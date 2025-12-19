@@ -60,7 +60,7 @@ const {loading}= useAuth();
 
     return (
         <div>
-            <h1>Total Club:</h1>
+            <h1>Total Club:{clubs.length}</h1>
             <div className="overflow-x-auto rounded-lg shadow-lg bg-white">
                             <table className="min-w-full divide-y divide-gray-200">
                                 <thead className="bg-base-200">

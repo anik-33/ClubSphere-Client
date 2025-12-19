@@ -46,7 +46,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="max-w-11/12 mx-auto navbar fixed top-0  w-full bg-transparent  z-50">
+    <div className="fixed  top-0 left-0 w-full z-50">
       <div
         className={`navbar transition-all duration-300 ${scrolled
           ? 'bg-white/90 backdrop-blur shadow'

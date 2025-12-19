@@ -20,6 +20,7 @@ import EventDetails from "@/Pages/Events/EventDetails";
 import UserClub from "@/Pages/dashboard/userClublist/userClub";
 import UserEvent from "@/Pages/dashboard/userEvent/UserEvent";
 import LoginLayout from "@/layout/LoginLayout";
+import ApproveClubMember from "@/Pages/dashboard/approveClubMember/ApproveClubMember";
 
 
 
@@ -85,7 +86,7 @@ export const router = createBrowserRouter([
         path: 'clubs/manage/create/newevent/:id',
         Component: CreateEvent
       },
-
+      // admin route 
       {
         path: 'users/management',
         Component: UsersManage
@@ -95,6 +96,10 @@ export const router = createBrowserRouter([
         path: 'club/management',
         Component: ApproveClub
       },
+      {
+        path:'club/approve-member',
+        Component:ApproveClubMember
+      }
     ]
   },
   // login route
