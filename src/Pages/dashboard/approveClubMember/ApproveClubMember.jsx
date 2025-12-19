@@ -38,6 +38,7 @@ const ApproveClubMember = () => {
             }
         });
     }
+    
     const handleReject = (club) => {
         Swal.fire({
             title: "Are you sure?",

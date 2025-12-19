@@ -78,6 +78,15 @@ const DashBord = () => {
                                     </button>
                                 </NavLink>
                             </li>
+                            <li>
+                                <NavLink to="registered-events/approve" >
+                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Approve Registered Events">
+                                        {/*users icon */}
+                                        <BiFolderPlus />
+                                        <span className="is-drawer-close:hidden">Approve Registered Events</span>
+                                    </button>
+                                </NavLink>
+                            </li>
                             {/* List item for manager role */}
                             <li>
                                 <NavLink to="clubs/manage/create/newclub" >

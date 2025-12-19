@@ -21,6 +21,7 @@ import UserClub from "@/Pages/dashboard/userClublist/userClub";
 import UserEvent from "@/Pages/dashboard/userEvent/UserEvent";
 import LoginLayout from "@/layout/LoginLayout";
 import ApproveClubMember from "@/Pages/dashboard/approveClubMember/ApproveClubMember";
+import ApproveRegisteredEvents from "@/Pages/dashboard/approveRegisteredEvents/ApproveRegisteredEvents";
 
 
 
@@ -99,6 +100,10 @@ export const router = createBrowserRouter([
       {
         path:'club/approve-member',
         Component:ApproveClubMember
+      },
+      {
+        path:'registered-events/approve',
+        Component:ApproveRegisteredEvents
       }
     ]
   },
