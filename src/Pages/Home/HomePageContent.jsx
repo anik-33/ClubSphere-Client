@@ -6,12 +6,14 @@ import Partners from './Partners';
 import HeroSection from './HeroSection';
 import WhyChoose from './WhyChoose';
 import FAQ from './Faq';
+import Events from '../Events/Events';
 
 const Home = () => {
     return (
         <div>
             {/* <Hero></Hero> */}
             <HeroSection></HeroSection>
+            <Events></Events>
 
             <Gallary></Gallary>
             <HowIt></HowIt>

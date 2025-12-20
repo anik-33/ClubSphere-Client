@@ -27,11 +27,12 @@ if (loading){
 }
 
     return (
-        <div className='mt-20'>
+        <div className=''>
             <Hero></Hero>
 
-            <h2 className="text-3xl font-bold mb-6 text-center">Total Clubs:{clubs.length}</h2>
-            <div className='grid grid-cols-2 md:grid-cols-3 gap-5'>
+            <h2 className="text-3xl font-bold mb-6 text-center mt-4">Explore our Clubs</h2>
+            
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
                 {
                     clubs.map(club => <ClubCard club={club} key={club._id}></ClubCard>)
                 }

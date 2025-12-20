@@ -5,9 +5,9 @@ import EventCard from './EventCard';
 
 const Events = () => {
     const axiosSecure = useAxiosSecure();
-    const {data : events = []} = useQuery({
+    const { data: events = [] } = useQuery({
         queryKey: ['events'],
-        queryFn: async () => {  
+        queryFn: async () => {
             const res = await axiosSecure.get('/events/approved');
             return res.data;
         }
@@ -15,12 +15,15 @@ const Events = () => {
 
 
     return (
-        <div className='mt-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4'>
-           
-        {
-            events.map(event =>  <EventCard key={event._id} event={event}></EventCard>)
-        }
+        <div className=''>
+            <h1 className='text-4xl font-bold text-center my-8 text-blue-500'>Our Latest Events</h1>
+            <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4'>
 
+                {
+                    events.map(event => <EventCard key={event._id} event={event}></EventCard>)
+                }
+
+            </div>
         </div>
     );
 };

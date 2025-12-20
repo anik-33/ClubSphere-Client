@@ -4,7 +4,7 @@ import React from 'react';
 
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:5173/'
+    baseURL: 'https://clubsphere-server-xi.vercel.app'
 })
 
 const useAxios = () => {
