@@ -1,9 +1,10 @@
 import useAuth from '@/Hooks/useAuth';
+import UseRole from '@/Hooks/UseRole';
 import React from 'react';
 
 const MyProfile = () => {
     const { user } = useAuth();
-
+    const {role}= UseRole();
     return (
         <div className="min-h-screen bg-gray-100 py-10 px-4">
             <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
@@ -49,8 +50,8 @@ const MyProfile = () => {
                                     <span className="font-medium text-gray-800">{user?.email}</span>
                                 </div>
                                 <div className="flex justify-between">
-                                    <span className="text-gray-500">Account ID</span>
-                                    <span className="font-mono text-xs text-gray-400">{user?.uid || 'N/A'}</span>
+                                    <span className="text-gray-500">Account Role</span>
+                                    <span className="font-mono  text-blue-500">{role || 'N/A'}</span>
                                 </div>
                             </div>
                         </div>

@@ -38,7 +38,7 @@ const EventDetails = () => {
     status,
   } = event;
 
-  const handleBookEvent = (id) => {
+  const handleBookEvent = (eventid) => {
     if (!user) {
       navigate('/login', {
         state: { from: Location }
@@ -46,46 +46,50 @@ const EventDetails = () => {
       return;
     }
 
-    const eventInfo ={
-        registeredAt:new Date(),
-        paymentId :'null',
-        status :'pending',
-        clubId : clubId,
-        userEmail:user.email,
-        eventId: id
+    const eventInfo = {
+      registeredAt: new Date(),
+      paymentId: 'null',
+      status: 'pending',
+      clubId: clubId,
+      userEmail: user.email,
+      eventId: eventid,
 
     }
 
-     Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-    
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, "
-            }).then((result) => {
-                if (result.isConfirmed) {
-    
-                    axiosSecure.post('/event/registrations', eventInfo)
-                        .then(res => {
-                            if (res.data.insertedId) {
-                                console.log('Event created successfully');
-                                Swal.fire({
-                                    title: "Booked!",
-                                    text: "Event Booked Succesfully!.",
-                                    icon: "success"
-    
-                                });
-                               
-                            }
-    
-                        })
-    
-    
-                }
-            });
-    
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, "
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        axiosSecure.post('/event/registrations', eventInfo)
+          .then(res => {
+            if (res.data.insertedId) {
+              console.log('Event created successfully');
+              Swal.fire({
+                title: "Booked!",
+                text: "Event Booked Succesfully!.",
+                icon: "success"
+              });
+            }
+          })
+          // .catch(err => {
+          //   Swal.fire({
+          //     title: "Error!",
+          //     text:err.response?.data?.message ||
+          //       "You already joined this club",
+          //     icon: "error"
+          //   });
+          // });
+
+      }
+    });
+
   };
 
   if (loading || isLoading) {
@@ -146,11 +150,10 @@ const EventDetails = () => {
 
             <div>
               <span
-                className={`px-3 py-1 rounded-full text-sm font-medium ${
-                  status === 'approved'
+                className={`px-3 py-1 rounded-full text-sm font-medium ${status === 'approved'
                     ? 'bg-green-100 text-green-700'
                     : 'bg-yellow-100 text-yellow-700'
-                }`}
+                  }`}
               >
                 {status}
               </span>
@@ -171,7 +174,7 @@ const EventDetails = () => {
           </p>
 
           <button
-            onClick={()=> handleBookEvent(_id)}
+            onClick={() => handleBookEvent(_id)}
             className="w-full py-3 rounded-lg bg-blue-700 text-white font-medium hover:bg-blue-800 transition"
           >
             {isPaid ? 'Book Now' : 'Register Free'}

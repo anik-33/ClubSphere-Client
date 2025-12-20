@@ -12,7 +12,39 @@ const AdminHome = () => {
             const res = await axiosSecure.get(`/users`);
             return res.data;
         }
-    })
+    });
+
+    const {  data: clubs = [] } = useQuery({
+        queryKey: ['clubs'],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/clubs`);
+            return res.data;
+        }
+    });
+
+    const {  data: approveClubs = [] } = useQuery({
+        queryKey: ['approveClubs'],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/approved/clubs`);
+            return res.data;
+        }
+    });
+
+    const {  data: pendingClubs = [] } = useQuery({
+        queryKey: ['pendingClubs'],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/pending/clubs`);
+            return res.data;
+        }
+    });
+
+    const {  data: events = [] } = useQuery({
+        queryKey: ['events'],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/events`);
+            return res.data;
+        }
+    });
     
 
     return (
@@ -26,19 +58,36 @@ const AdminHome = () => {
                     <h3 className="text-xl font-semibold text-blue-900 mb-1">Total Users</h3>
                     <p className="text-3xl font-bold text-blue-800">{users.length}</p>
                 </div>
+
                 <div className="bg-gradient-to-br from-purple-100 to-purple-300 rounded-xl shadow-lg p-6 flex flex-col items-center justify-center">
                     <span className="text-4xl mb-2 text-purple-700">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m6 5.87V4a4 4 0 10-8 0v16m8 0a4 4 0 008 0V4a4 4 0 10-8 0v16z" /></svg>
                     </span>
                     <h3 className="text-xl font-semibold text-purple-900 mb-1">Total Clubs</h3>
-                    <p className="text-3xl font-bold text-purple-800">--</p>
+                    <p className="text-3xl font-bold text-purple-800">{clubs.length}</p>
                 </div>
+                
+                <div className="bg-gradient-to-br from-purple-100 to-purple-300 rounded-xl shadow-lg p-6 flex flex-col items-center justify-center">
+                    <span className="text-4xl mb-2 text-purple-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m6 5.87V4a4 4 0 10-8 0v16m8 0a4 4 0 008 0V4a4 4 0 10-8 0v16z" /></svg>
+                    </span>
+                    <h3 className="text-xl font-semibold text-purple-900 mb-1">Pending Clubs</h3>
+                    <p className="text-3xl font-bold text-purple-800">{pendingClubs.length}</p>
+                </div>
+                <div className="bg-gradient-to-br from-purple-100 to-purple-300 rounded-xl shadow-lg p-6 flex flex-col items-center justify-center">
+                    <span className="text-4xl mb-2 text-purple-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m6 5.87V4a4 4 0 10-8 0v16m8 0a4 4 0 008 0V4a4 4 0 10-8 0v16z" /></svg>
+                    </span>
+                    <h3 className="text-xl font-semibold text-purple-900 mb-1">Approved Clubs</h3>
+                    <p className="text-3xl font-bold text-purple-800">{approveClubs.length}</p>
+                </div>
+
                 <div className="bg-gradient-to-br from-pink-100 to-pink-300 rounded-xl shadow-lg p-6 flex flex-col items-center justify-center">
                     <span className="text-4xl mb-2 text-pink-700">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3zm0 10c-4.418 0-8-1.79-8-4V6a2 2 0 012-2h12a2 2 0 012 2v8c0 2.21-3.582 4-8 4z" /></svg>
                     </span>
                     <h3 className="text-xl font-semibold text-pink-900 mb-1">Total Events</h3>
-                    <p className="text-3xl font-bold text-pink-800">--</p>
+                    <p className="text-3xl font-bold text-pink-800">{events.length}</p>
                 </div>
             </div>
         </div>

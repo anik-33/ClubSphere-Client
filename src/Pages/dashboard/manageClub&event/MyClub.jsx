@@ -30,7 +30,7 @@ const MyClub = () => {
             <div className='flex flex-col gap-3 mb-4 p-3'>
                 <h1 className='text-gray-900 text-2xl'>Total Club Incharge:{clubs.length}</h1>
                 <div>
-                    <Link to='create/newclub'>
+                    <Link to='create-newclub'>
                         <button className='btn bg-blue-500 text-white'>Create New Club</button>
                     </Link>
                 </div>
@@ -81,7 +81,7 @@ const MyClub = () => {
                                 <td className="px-4 py-3 text-center">
                                     {
                                         club.status === 'approved' ? (
-                                            <Link to={`create/newevent/${club._id}`}>
+                                            <Link to={`create-newevent/${club._id}`}>
                                                 <button className="btn text-white bg-blue-500 btn-outline">
                                                     Create Event
                                                 </button>

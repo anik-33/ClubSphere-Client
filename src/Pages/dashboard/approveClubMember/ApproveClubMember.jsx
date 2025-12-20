@@ -11,7 +11,7 @@ const ApproveClubMember = () => {
     const { refetch, data: clubs = [] } = useQuery({
         queryKey: ['clubs'],
         queryFn: async () => {
-            const res = await axiosSecure.get("/booking/clubs");
+            const res = await axiosSecure.get("/club/pending-members");
             return res.data;
         }
     })

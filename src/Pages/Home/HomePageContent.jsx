@@ -5,6 +5,7 @@ import Gallary from './Gallary';
 import Partners from './Partners';
 import HeroSection from './HeroSection';
 import WhyChoose from './WhyChoose';
+import FAQ from './Faq';
 
 const Home = () => {
     return (
@@ -17,6 +18,7 @@ const Home = () => {
             
             <Partners></Partners>
             <WhyChoose></WhyChoose>
+           <FAQ></FAQ>
         </div>
     );
 };

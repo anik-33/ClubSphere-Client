@@ -8,7 +8,7 @@ const Events = () => {
     const {data : events = []} = useQuery({
         queryKey: ['events'],
         queryFn: async () => {  
-            const res = await axiosSecure.get('/events');
+            const res = await axiosSecure.get('/events/approved');
             return res.data;
         }
     });

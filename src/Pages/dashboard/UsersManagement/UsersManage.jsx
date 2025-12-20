@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 const UsersManage = () => {
 
 
-const axiosSecure = useAxiosSecure();
+    const axiosSecure = useAxiosSecure();
     const [searchText, setSearchText] = useState('');
 
     const { refetch, data: users = [] } = useQuery({
@@ -22,41 +22,76 @@ const axiosSecure = useAxiosSecure();
 
     const handleMakeManager = user => {
         const roleInfo = { role: 'manager' }
-        //TODO: must ask for confirmation before proceed
-        axiosSecure.patch(`/users/${user._id}/role`, roleInfo)
-            .then(res => {
-                console.log(res.data);
-                if (res.data.modifiedCount) {
-                    refetch();
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: `${user.displayName} marked as a Manager`,
-                        showConfirmButton: false,
-                        timer: 2000
-                    });
-                }
-            })
+
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Marked this person as manager!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                axiosSecure.patch(`/users/${user._id}/role`, roleInfo)
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.modifiedCount) {
+                            refetch();
+                            Swal.fire({
+                                title: "Success!",
+                                text: "User has been marked as manager.",
+                                icon: "success"
+                            });
+
+                        }
+                    })
+
+
+            }
+        });
+
+
+
+
     }
 
     const handleRemoveManager = user => {
         const roleInfo = { role: 'user' }
-        //TODO: must ask for confirmation before proceed
-        axiosSecure.patch(`/users/${user._id}/role`, roleInfo)
-            .then(res => {
-                if (res.data.modifiedCount) {
-                    refetch();
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: `${user.displayName} removed from Manager`,
-                        showConfirmButton: false,
-                        timer: 2000
-                    });
-                }
-            })
+      
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, remove this person as manager!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                axiosSecure.patch(`/users/${user._id}/role`, roleInfo)
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.modifiedCount) {
+                            refetch();
+                            Swal.fire({
+                                title: "Success!",
+                                text: "User has been removed as manager to user.",
+                                icon: "success"
+                            });
+
+                        }
+                    })
+
+
+            }
+        });
+
     }
-    
+
     return (
         <div className="max-w-6xl mx-auto p-6">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4">
@@ -109,7 +144,7 @@ const axiosSecure = useAxiosSecure();
                                         </div>
                                         <div>
                                             <div className="font-bold text-lg text-primary">{user.displayName}</div>
-                                            
+
                                         </div>
                                     </div>
                                 </td>

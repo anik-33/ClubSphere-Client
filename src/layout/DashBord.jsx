@@ -9,8 +9,10 @@ import { ImProfile } from "react-icons/im";
 import { FcHome } from "react-icons/fc";
 import { IoHome } from "react-icons/io5";
 import { FaArrowRightArrowLeft } from "react-icons/fa6";
+import UseRole from '@/Hooks/UseRole';
 
 const DashBord = () => {
+    const { role } = UseRole();
     return (
         <div>
             <div className="drawer lg:drawer-open ">
@@ -20,7 +22,7 @@ const DashBord = () => {
                     <nav className="navbar w-full bg-base-300 bg-gradient-to-br from-blue-50 to-blue-200">
                         <label htmlFor="my-drawer-4" aria-label="open sidebar" className="btn btn-square btn-ghost">
                             {/* Sidebar toggle icon */}
-                             <FaArrowRightArrowLeft />
+                            <FaArrowRightArrowLeft />
                         </label>
                         <div className="px-4 text-2xl text-blue-800">ClubSphere Dashboard</div>
                     </nav>
@@ -55,94 +57,128 @@ const DashBord = () => {
 
 
                             {/* List item for admin role */}
-                            <li>
-                                <NavLink to="users/management" >
-                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="User Manage">
-                                        {/*users icon */}
-                                        <FaUsers />
-                                        <span className="is-drawer-close:hidden">Manage Users</span>
-                                    </button>
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="club/management" >
-                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Approve Clubs">
-                                        {/*users icon */}
-                                        <BiFolderPlus />
-                                        <span className="is-drawer-close:hidden">Approve Clubs</span>
-                                    </button>
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="club/approve-member" >
-                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Approve Clubs Member">
-                                        {/*users icon */}
-                                        <BiFolderPlus />
-                                        <span className="is-drawer-close:hidden">Approve Clubs Member</span>
-                                    </button>
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="registered-events/approve" >
-                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Approve Registered Events">
-                                        {/*users icon */}
-                                        <BiFolderPlus />
-                                        <span className="is-drawer-close:hidden">Approve Registered Events</span>
-                                    </button>
-                                </NavLink>
-                            </li>
-                            {/* List item for manager role */}
-                            <li>
-                                <NavLink to="clubs/manage/create/newclub" >
-                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Create Club">
-                                        {/* Club Creeate icon */}
-                                        <IoIosCreate />
-                                        <span className="is-drawer-close:hidden">Create Club</span>
-                                    </button>
-                                </NavLink>
-                            </li>
-                            {/* List item for manager role */}
-                            <li>
-                                <NavLink to="clubs/manage" >
-                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Create Events">
-                                        {/* Club manage icon */}
-                                        <MdCreateNewFolder />
-                                        <span className="is-drawer-close:hidden">Create Events</span>
-                                    </button>
-                                </NavLink>
-                            </li>
+                            {
+                                role === 'admin' && <>
+                                    <li>
+                                        <NavLink to="admin/users-management" >
+                                            <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="User Manage">
+                                                {/*users icon */}
+                                                <FaUsers />
+                                                <span className="is-drawer-close:hidden">Manage Users</span>
+                                            </button>
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="admin/club-management" >
+                                            <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Approve Clubs">
+                                                {/*users icon */}
+                                                <BiFolderPlus />
+                                                <span className="is-drawer-close:hidden">Approve Clubs</span>
+                                            </button>
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="admin/event-management" >
+                                            <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Approve Events">
+                                                {/*users icon */}
+                                                <BiFolderPlus />
+                                                <span className="is-drawer-close:hidden">Approve Events</span>
+                                            </button>
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="admin/club-approve-member" >
+                                            <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Approve Clubs Member">
+                                                {/*users icon */}
+                                                <BiFolderPlus />
+                                                <span className="is-drawer-close:hidden">Approve Clubs Member</span>
+                                            </button>
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="admin/registered-events-approve" >
+                                            <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Approve Registered Events">
+                                                {/*users icon */}
+                                                <BiFolderPlus />
+                                                <span className="is-drawer-close:hidden">Approve Registered Events</span>
+                                            </button>
+                                        </NavLink>
+                                    </li>
 
+                                </>
+                            }
+                            {/* List item for manager role */}
+                            {
+                                role === 'manager' && <>
+                                    <li>
+                                        <NavLink to="manager/clubs-manage/create-newclub" >
+                                            <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Create Club">
+                                                {/* Club Creeate icon */}
+                                                <IoIosCreate />
+                                                <span className="is-drawer-close:hidden">Create Club</span>
+                                            </button>
+                                        </NavLink>
+                                    </li>
+                                    {/* List item for manager role */}
+                                    <li>
+                                        <NavLink to="manager/clubs-manage" >
+                                            <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Clubs">
+                                                {/* Club manage icon */}
+                                                <MdCreateNewFolder />
+                                                <span className="is-drawer-close:hidden">My Clubs</span>
+                                            </button>
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="manager/events-manage" >
+                                            <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Events">
+                                                {/* Club manage icon */}
+                                                <MdCreateNewFolder />
+                                                <span className="is-drawer-close:hidden">My Events</span>
+                                            </button>
+                                        </NavLink>
+                                    </li>
+
+
+                                </>
+                            }
                             {/* List item for user role*/}
-                            <NavLink to='user/myclub'>
-                                <li>
-                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Clubs">
-                                        {/* Users icon */}
-                                        <LuClub />
-                                        <span className="is-drawer-close:hidden">My Clubs</span>
-                                    </button>
-                                </li>
-                            </NavLink>
-                            <NavLink to='user/myevent'>
-                                <li>
-                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Events">
-                                        {/* Users icon */}
-                                        <MdEventAvailable />
-                                        <span className="is-drawer-close:hidden">My Events</span>
-                                    </button>
-                                </li>
-                            </NavLink>
+                            {
+                                role === 'user' && <>
+
+                                    <NavLink to='user/myclub'>
+                                        <li>
+                                            <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Clubs">
+                                                {/* Users icon */}
+                                                <LuClub />
+                                                <span className="is-drawer-close:hidden">My Clubs</span>
+                                            </button>
+                                        </li>
+                                    </NavLink>
+                                    <NavLink to='user/myevent'>
+                                        <li>
+                                            <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Events">
+                                                {/* Users icon */}
+                                                <MdEventAvailable />
+                                                <span className="is-drawer-close:hidden">My Events</span>
+                                            </button>
+                                        </li>
+                                    </NavLink>
 
 
-                            {/* List item for Profile */}
-                         <NavLink to='my-profile'>
-                               <li>
-                                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Settings">
-                                    {/* Settings icon */}
-                                 <ImProfile />
-                                    <span className="is-drawer-close:hidden">Profile</span>
-                                </button>
-                            </li>
-                         </NavLink>
+                                    {/* List item for Profile */}
+                                    <NavLink to='my-profile'>
+                                        <li>
+                                            <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Profile">
+                                                {/* Settings icon */}
+                                                <ImProfile />
+                                                <span className="is-drawer-close:hidden">Profile</span>
+                                            </button>
+                                        </li>
+                                    </NavLink>
+
+                                </>
+                            }
                         </ul>
                     </div>
                 </div>

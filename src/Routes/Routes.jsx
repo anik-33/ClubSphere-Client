@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import RootLayout from "../layout/RootLayout";
-import Home from "../Pages/Home/Home";
+import HomePageContent from "../Pages/Home/HomePageContent";
 import Login from "../Pages/Login/Login";
 import Register from "@/Pages/Login/Register";
 import Club from "@/Pages/Clubs/Club";
@@ -23,6 +23,9 @@ import LoginLayout from "@/layout/LoginLayout";
 import ApproveClubMember from "@/Pages/dashboard/approveClubMember/ApproveClubMember";
 import ApproveRegisteredEvents from "@/Pages/dashboard/approveRegisteredEvents/ApproveRegisteredEvents";
 import MyProfile from "@/Pages/dashboard/MyProfile/MyProfile";
+import ApproveEvent from "@/Pages/dashboard/approveEvent/ApproveEvent";
+import MyEvent from "@/Pages/dashboard/manageClub&event/MyEvent";
+import EventUpdate from "@/Pages/dashboard/manageClub&event/EventUpdate";
 
 
 
@@ -35,7 +38,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        Component: Home
+        Component: HomePageContent
       },
       {
         path: '/clubs',
@@ -75,35 +78,47 @@ export const router = createBrowserRouter([
       },
 
       {
-        path: 'clubs/manage',
+        path: 'manager/clubs-manage',
         Component: MyClub
         // manager route
       },
       {
-        path: 'clubs/manage/create/newclub',
+        path:'manager/events-manage',
+        Component:MyEvent
+      },
+      {
+        path: 'manager/clubs-manage/create-newclub',
         Component: CreateClub
         // element:<ManagerRoute><CreateClub></CreateClub></ManagerRoute>
       },
       {
-        path: 'clubs/manage/create/newevent/:id',
+        path: 'manager/clubs-manage/create-newevent/:id',
         Component: CreateEvent
+      },
+      {
+        path:'manager/events-manage/event-update/:id',
+        Component:EventUpdate
       },
       // admin route 
       {
-        path: 'users/management',
+        path: 'admin/users-management',
         Component: UsersManage
         // element:<AdminRoute><UsersManage></UsersManage></AdminRoute>
       },
       {
-        path: 'club/management',
+        path: 'admin/club-management',
         Component: ApproveClub
       },
       {
-        path:'club/approve-member',
+        path: 'admin/event-management',
+        Component: ApproveEvent
+      },
+      {
+        path:'admin/club-approve-member',
         Component:ApproveClubMember
       },
       {
-        path:'registered-events/approve',
+        path:'admin/registered-events-approve',
         Component:ApproveRegisteredEvents
       },
       {

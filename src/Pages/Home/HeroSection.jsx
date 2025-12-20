@@ -5,17 +5,17 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 const slides = [
-  { img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWN454EA5ZIp8VeQvFU70xW7aZFoKIEErv3g&s", label: "Technology Clubs" },
-  { img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-LKxebcoq-R8OfkkjLFAlrd-vtw34zwHE_g&s", label: "Photography Clubs" },
-  { img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZ7iEb1wKKX_KLhEi15_AIm2iNK5GnrSR4XQ&s", label: "Sports Clubs" },
+  { img: "https://i.pinimg.com/736x/8d/37/99/8d3799e24be55bdfddb7a4fd8e4100d0.jpg", label: "Technology Clubs" },
+  { img: "https://www.thecameraclub.co.uk/Studio%20Pods/PHOTO-2024-07-30-10-23-36.jpg", label: "Photography Clubs" },
+  { img: "https://i.pinimg.com/1200x/39/4a/85/394a8514c21be4c0fc80e3d2a9879019.jpg", label: "Sports Clubs" },
 ];
 
 export default function HeroSection() {
   return (
-    <section className="h-[75vh] mt-20 md:h-[80vh] bg-[#0B1120] relative overflow-hidden">
+    <section className="h-[75vh] md:h-[80vh] relative overflow-hidden bg-gradient-to-r from-blue-600/30 to-purple-500/30">
       {/* Ambient glow */}
-      <div className="absolute -top-32 -left-32 w-96 h-96 bg-blue-600/30 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-600/30 rounded-full blur-3xl"></div>
+      {/* <div className="absolute -top-32 -left-32 w-[450px] h-96 bg-blue-600/30 rounded-full blur-2xl"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-600/30 rounded-full blur-2xl"></div> */}
 
       <div className="relative max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-14 items-center h-full">
 
@@ -30,7 +30,7 @@ export default function HeroSection() {
             ⚡ Clubs • Events • Community
           </span>
 
-          <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
+          <h1 className="text-3xl md:text-5xl text-gray-700 font-extrabold leading-tight">
             Build Connections Through
             <span className="block bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
               Clubs & Experiences
@@ -46,7 +46,7 @@ export default function HeroSection() {
             <button className="px-7 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:opacity-90 transition rounded-full font-medium shadow-lg shadow-blue-600/30">
               Explore Clubs
             </button>
-            <button className="px-7 py-3 border border-white/20 hover:bg-white/10 transition rounded-full font-medium">
+            <button className="px-7 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:opacity-90 transition rounded-full font-medium">
               View Events
             </button>
           </div>

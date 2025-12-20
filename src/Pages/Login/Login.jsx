@@ -3,6 +3,7 @@ import { Eye, EyeOff } from "lucide-react";
 import useAuth from "@/Hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router";
 import SocialLogin from "./SocialLogin";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function LoginPage() {
   const { signInUser } = useAuth();
@@ -13,6 +14,9 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -22,6 +26,7 @@ export default function LoginPage() {
     try {
       setLoading(true);
       const result = await signInUser(email, password);
+      toast.success("Successfull!");
 
       console.log("Logged in user:", result.user);
       navigate(location.state?.from?.pathname || "/", { replace: true });
@@ -35,6 +40,7 @@ export default function LoginPage() {
   return (
     <div className="max-w-md w-full bg-transparent text-white
  min-h-screen flex items-center justify-center  p-4">
+   <Toaster position="top-center" reverseOrder={false} />
       <div className=" dark:bg-gray-800 shadow-2xl rounded-3xl max-w-md w-full p-8">
         <h2 className="text-3xl font-bold text-center mb-6">
           Welcome Back

@@ -1,4 +1,5 @@
-import { Outlet } from 'react-router';
+import { Toaster } from 'react-hot-toast';
+import { Link, Outlet } from 'react-router';
 
 const LoginLayout = () => {
   return (
@@ -16,14 +17,20 @@ const LoginLayout = () => {
             <li>✔ Discover amazing clubs</li>
             <li>✔ Manage events easily</li>
             <li>✔ Grow your network</li>
+            <Link to='/' className='btn bg-blue-500 text-white'>
+          Back Home
+        </Link>
           </ul>
+          
         </div>
 
         {/* RIGHT */}
         <div className="flex items-center justify-center px-4">
           <Outlet />
+          <Toaster position="top-right" reverseOrder={false} />
         </div>
 
+        
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import SocialLogin from './SocialLogin';
 import useAuth from '@/Hooks/useAuth';
 import useAxiosSecure from '@/Hooks/UseAxiossecure';
 import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 
@@ -45,6 +46,7 @@ const Register = () => {
                         axiosSecure.post('/users', userInfo)
                             .then(res => {
                                 if (res.data.insertedId) {
+                                    
                                     console.log('user created in the database');
                                 }
                             })
@@ -58,12 +60,14 @@ const Register = () => {
 
                         updateUserProfile(userProfile)
                             .then(() => {
+                                toast.success("Successfully loged in!");
                                 // console.log('user profile updated done.')
                                 navigate(location.state || '/');
                             })
                             .catch(error => console.log(error))
                     })
 
+                    
 
 
             })
@@ -179,6 +183,7 @@ const Register = () => {
             <div className="mt-5">
                 <SocialLogin />
             </div>
+            
         </div>
     );
 };

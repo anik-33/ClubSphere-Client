@@ -6,134 +6,119 @@ import { Link, NavLink } from 'react-router';
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
 
-  // Scroll effect
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleLogOut = () => {
-    logOut().catch(console.log);
-  };
-
   const navLinkClass = ({ isActive }) =>
-    isActive
-      ? 'text-[#513fc5] font-semibold border-b-2 border-[#513fc5]'
-      : 'text-gray-700 hover:text-[#513fc5]';
-
-  const links = (
-    <>
-      <li>
-        <NavLink to="/" className={navLinkClass}>
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/clubs" className={navLinkClass}>
-          Clubs
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/events" className={navLinkClass}>
-          Events
-        </NavLink>
-      </li>
-    </>
-  );
+    `relative font-medium transition ${
+      isActive
+        ? 'text-[#513fc5] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:bg-[#513fc5]'
+        : 'text-gray-700 hover:text-[#513fc5]'
+    }`;
 
   return (
-    <div className="fixed  top-0 left-0 w-full z-50">
-      <div
-        className={`navbar transition-all duration-300 ${scrolled
-          ? 'bg-white/90 backdrop-blur shadow'
+    <header
+      className={`sticky top-0 left-0   w-full z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-white/90 backdrop-blur shadow-md'
           : 'bg-transparent'
-          }`}
-      >
-        {/* Left */}
-        <div className="navbar-start">
-          <div className="dropdown">
-            <div tabIndex={0} className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-white rounded-box w-52"
-            >
-              {links}
-            </ul>
-          </div>
+      }`}
+    >
+      <div className=" px-5">
+        <div className="h-16 flex items-center justify-between">
 
+          {/* Logo */}
           <Link
             to="/"
-            className="text-2xl font-bold text-blue-600"
+            className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600
+                       bg-clip-text text-transparent drop-shadow"
           >
             ClubSphere
           </Link>
-        </div>
 
-        {/* Center */}
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal gap-6">
-            {links}
-          </ul>
-        </div>
+          {/* Desktop Menu */}
+          <nav className="hidden md:flex items-center gap-8">
+            <NavLink to="/" className={navLinkClass}>Home</NavLink>
+            <NavLink to="/clubs" className={navLinkClass}>Clubs</NavLink>
+            <NavLink to="/events" className={navLinkClass}>Events</NavLink>
+          </nav>
 
-        {/* Right */}
-        <div className="navbar-end">
-          {user ? (
-            <div className="dropdown dropdown-end">
-              <div tabIndex={0} className="avatar cursor-pointer">
+          {/* Right */}
+          <div className="flex items-center gap-4">
+            {user ? (
+              <div className="relative group">
                 <img
                   src={user.photoURL || '/default-avatar.png'}
-                  className="rounded-full h-11 w-11 border"
                   alt="user"
+                  className="h-10 w-10 rounded-full border cursor-pointer"
                 />
-              </div>
 
-              <ul
-                tabIndex={0}
-                className="dropdown-content menu mt-3 p-3 shadow bg-white rounded-box w-52"
+                {/* Dropdown */}
+                <div className="absolute right-0 mt-3 w-52 bg-white rounded-xl shadow-lg
+                                opacity-0 scale-95 invisible
+                                group-hover:opacity-100 group-hover:scale-100 group-hover:visible
+                                transition-all duration-200 p-3">
+                  <p className="text-center font-semibold mb-2">
+                    {user.displayName}
+                  </p>
+                  <Link
+                    to="/dashboard"
+                    className="block px-3 py-2 rounded hover:bg-gray-100"
+                  >
+                    Dashboard
+                  </Link>
+                  <button
+                    onClick={logOut}
+                    className="w-full text-left px-3 py-2 rounded hover:bg-red-50 text-red-600"
+                  >
+                    Log Out
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <Link
+                to="/login"
+                className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2
+                           rounded-full hover:bg-blue-700 transition"
               >
-                <li className="font-semibold text-center">
-                  {user.displayName}
-                </li>
-                <li>
-                  <Link to="/dashboard">Dashboard</Link>
-                </li>
-                <li>
-                  <button onClick={handleLogOut}>Log Out</button>
-                </li>
-              </ul>
-            </div>
-          ) : (
-            <Link
-              to="/login"
-              className="btn bg-blue-600 text-white border-none"
+                <MdLogin />
+                Login
+              </Link>
+            )}
+
+            {/* Mobile Button */}
+            <button
+              onClick={() => setOpen(!open)}
+              className="md:hidden flex flex-col gap-1"
             >
-              <MdLogin />
-              Log in
-            </Link>
-          )}
+              <span className="w-6 h-[2px] bg-gray-700"></span>
+              <span className="w-6 h-[2px] bg-gray-700"></span>
+              <span className="w-6 h-[2px] bg-gray-700"></span>
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Menu */}
+        {open && (
+          <div className="md:hidden bg-white rounded-xl shadow-lg mt-3 p-5 space-y-4">
+            <NavLink onClick={() => setOpen(false)} to="/" className={navLinkClass}>
+              Home
+            </NavLink>
+            <NavLink onClick={() => setOpen(false)} to="/clubs" className={navLinkClass}>
+              Clubs
+            </NavLink>
+            <NavLink onClick={() => setOpen(false)} to="/events" className={navLinkClass}>
+              Events
+            </NavLink>
+          </div>
+        )}
       </div>
-    </div>
+    </header>
   );
 };
 
