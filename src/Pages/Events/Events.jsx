@@ -6,13 +6,17 @@ import EventCard from './EventCard';
 const Events = () => {
     const axiosSecure = useAxiosSecure();
     const { data: events = [] } = useQuery({
-        queryKey: ['events'],
+        queryKey: ['eventss'],
         queryFn: async () => {
             const res = await axiosSecure.get('/events/approved');
+           
             return res.data;
+            
         }
+        
     });
-
+     
+console.log(events);
 
     return (
         <div className=''>

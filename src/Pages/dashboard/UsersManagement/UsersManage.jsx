@@ -3,6 +3,8 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { FaUserShield } from 'react-icons/fa';
 import { FiShieldOff } from 'react-icons/fi';
+import { IoPersonRemove } from 'react-icons/io5';
+import { RiAdminFill } from "react-icons/ri";
 import Swal from 'sweetalert2';
 
 const UsersManage = () => {
@@ -18,7 +20,7 @@ const UsersManage = () => {
             return res.data;
         }
     })
-    // console.log(users);
+    console.log(users);
 
     const handleMakeManager = user => {
         const roleInfo = { role: 'manager' }
@@ -48,15 +50,40 @@ const UsersManage = () => {
 
                         }
                     })
-
-
             }
         });
+    };
+    const handleMakeAdmin = user => {
+        const roleInfo = { role: 'admin' }
 
 
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Marked this person as an admin!"
+        }).then((result) => {
+            if (result.isConfirmed) {
 
+                axiosSecure.patch(`/users/${user._id}/role`, roleInfo)
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.modifiedCount) {
+                            refetch();
+                            Swal.fire({
+                                title: "Success!",
+                                text: "User has been marked as an admin.",
+                                icon: "success"
+                            });
 
-    }
+                        }
+                    })
+            }
+        });
+    };
 
     const handleRemoveManager = user => {
         const roleInfo = { role: 'user' }
@@ -90,7 +117,44 @@ const UsersManage = () => {
             }
         });
 
-    }
+    };
+
+    const handleRemoveAdmin = user => {
+        const roleInfo = { role: 'user' }
+      
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, remove this person as an Admin!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                axiosSecure.patch(`/users/${user._id}/role`, roleInfo)
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.modifiedCount) {
+                            refetch();
+                            Swal.fire({
+                                title: "Success!",
+                                text: "User has been removed as manager to user.",
+                                icon: "success"
+                            });
+
+                        }
+                    })
+
+
+            }
+        });
+
+    };
+
+  
+
 
     return (
         <div className="max-w-6xl mx-auto p-6">
@@ -154,14 +218,14 @@ const UsersManage = () => {
                                         {user.role}
                                     </span>
                                 </td>
-                                <td className="px-4 py-3 text-center">
+                                <td className="px-4 flex gap-1 py-3 text-center">
                                     {user.role === 'manager' ? (
                                         <button
                                             onClick={() => handleRemoveManager(user)}
                                             className="btn btn-sm bg-red-100 hover:bg-red-200 text-red-600 border-none shadow-none"
                                             title="Remove Manager"
                                         >
-                                            <FiShieldOff size={18} />
+                                            <FiShieldOff size={18} />Remove Manager
                                         </button>
                                     ) : (
                                         <button
@@ -169,12 +233,30 @@ const UsersManage = () => {
                                             className="btn btn-sm bg-green-100 hover:bg-green-200 text-green-700 border-none shadow-none"
                                             title="Make Manager"
                                         >
-                                            <FaUserShield size={18} />
+                                            <FaUserShield size={18} />Make Manager
+                                        </button>
+                                    )}
+
+                                    {user.role === 'admin' ? (
+                                        <button
+                                            onClick={() => handleRemoveAdmin(user)}
+                                            className="ml-1 btn btn-sm bg-red-100 hover:bg-red-200 text-red-600 border-none shadow-none"
+                                            title="Remove Admin"
+                                        >
+                                            <IoPersonRemove  size={18} />Remove Admin
+                                        </button>
+                                    ) : (
+                                        <button
+                                            onClick={() => handleMakeAdmin(user)}
+                                            className="btn btn-sm bg-green-100 hover:bg-green-200 text-blue-700 border-none shadow-none"
+                                            title="Make Admin"
+                                        >
+                                              <RiAdminFill  size={18} />Make Admin
                                         </button>
                                     )}
                                 </td>
                                 <td className="px-4 py-3 text-center">
-                                    <button className="btn btn-xs btn-outline">{user.createdAt}</button>
+                                    <button className=" ">{user.createdAt}</button>
                                 </td>
                             </tr>
                         ))}

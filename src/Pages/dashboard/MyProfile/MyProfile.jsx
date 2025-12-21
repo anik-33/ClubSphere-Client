@@ -9,7 +9,9 @@ const MyProfile = () => {
         <div className="min-h-screen bg-gray-100 py-10 px-4">
             <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
                 {/* Cover Photo / Header Gradient */}
-                <div className="h-32 bg-gradient-to-r from-blue-500 to-purple-600"></div>
+                <div className="h-32 bg-gradient-to-r from-blue-500 to-purple-600">
+                    <h1 className="text-white text-center  text-2xl font-bold p-4">ClubSphere Profile</h1>
+                </div>
 
                 {/* Profile Section */}
                 <div className="relative px-6 pb-6">

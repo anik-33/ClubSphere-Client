@@ -47,7 +47,7 @@ const DashBord = () => {
                             </li>
                             <li>
                                 <NavLink to='/dashboard'>
-                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
+                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Dashboard Homepage">
                                         {/* Home icon */}
                                         <FcHome />
                                         <span className="is-drawer-close:hidden">Dashboard Home</span>
@@ -166,19 +166,20 @@ const DashBord = () => {
                                     </NavLink>
 
 
-                                    {/* List item for Profile */}
-                                    <NavLink to='my-profile'>
-                                        <li>
-                                            <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Profile">
-                                                {/* Settings icon */}
-                                                <ImProfile />
-                                                <span className="is-drawer-close:hidden">Profile</span>
-                                            </button>
-                                        </li>
-                                    </NavLink>
+
 
                                 </>
                             }
+                            {/* List item for Profile */}
+                            <NavLink to='my-profile'>
+                                <li>
+                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Profile">
+                                        {/* Settings icon */}
+                                        <ImProfile />
+                                        <span className="is-drawer-close:hidden">Profile</span>
+                                    </button>
+                                </li>
+                            </NavLink>
                         </ul>
                     </div>
                 </div>
